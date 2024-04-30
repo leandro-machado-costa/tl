@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/leandro-machado-costa/tl/internal/config/db"
+	"github.com/leandro-machado-costa/tl/internal/configenv/db"
 	"github.com/leandro-machado-costa/tl/internal/domain"
 )
 
@@ -42,7 +42,15 @@ func GetUserByID(id int64) (user domain.Users, err error) {
 
 	return user, err
 }
+func GetUserByUsernamePassword(username string, password string) (user domain.Users, err error) {
+	conn := db.GetDB()
 
+	row := conn.QueryRow("SELECT id, username, email, name, resume, picture, role_id,updated_at, created_at FROM users WHERE username = '$1'", username)
+
+	err = row.Scan(&user.ID, &user.Username, &user.Email, &user.Name, &user.Resume, &user.Picture, &user.RoleID, &user.Updated_at, &user.Created_at)
+
+	return user, err
+}
 func InsertUser(user domain.Users) (id int64, err error) {
 	conn := db.GetDB()
 

@@ -8,6 +8,7 @@ type Users struct {
 	Username   string `gorm:"type:varchar(255);unique;not null"`
 	Email      string `gorm:"type:varchar(255);unique;not null"`
 	Name       string `gorm:"type:varchar(255);not null"`
+	Password   string `gorm:"type:varchar(255);not null"`
 	Resume     string
 	Picture    string `gorm:"type:varchar(255);not null"`
 	RoleID     int    `gorm:"column:role_id"`

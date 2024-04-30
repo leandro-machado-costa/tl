@@ -102,7 +102,6 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(users)
-
 }
 
 func UpdateUserByID(w http.ResponseWriter, r *http.Request) {
